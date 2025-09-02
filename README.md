@@ -4,7 +4,7 @@ A full-stack web application for managing Customers and their Multiple Addresses
 
 This project demonstrates complete CRUD operations with proper validation, search & filtering, pagination, and navigation. It serves as an assignment for showcasing proficiency in modern full-stack development.
 
-🚀 Tech Stack
+Tech Stack
 
 Frontend: React.js, React Router, Axios
 
@@ -12,52 +12,66 @@ Backend: Node.js, Express.js, CORS
 
 Database: SQLite3
 
-📂 Project Structure
+Project Structure (as described in the README)
 
 customer-management-app/
-├── client/          # React frontend
+
+├── client/           # React frontend
+
 │   ├── src/
-│   │   ├── pages/        # Page components (List, Detail, Form)
-│   │   ├── components/   # Reusable UI components
-│   │   └── App.js        # Router setup
+
+│   │   ├── pages/     # Page components (List, Detail, Form)
+
+│   │   ├── components/  # Reusable UI components
+
+│   │   └── App.js     # Router setup
+
 │   └── package.json
-│
-└── server/          # Express backend
-    ├── index.js     # Entry point
-    ├── db.js        # DB connection & migrations
-    ├── migrations/  # SQL migration scripts
-    ├── database.db  # SQLite database file (auto-created)
-    └── package.json
+
+├── server/          # Express backend
 
 
-⚙️ Setup Instructions
+│   ├── index.js       # Entry point
 
-1️⃣ Clone the repository
+│   ├── db.js          # DB connection & migrations
 
-git clone https://github.com/your-username/customer-management-app.git
+│   ├── migrations/    # SQL migration scripts
 
-cd customer-management-app
+│   └── database.db    # SQLite database file (auto-created)
 
-2️⃣ Backend Setup
+├── .gitignore
+
+└── other config files (package.json, tsconfig.json, next.config.mjs, etc.)
+
+Setup Instructions
+
+1. Clone the repository
+
+git clone https://github.com/ibrahim9492/Qwipo_Assignment.git
+
+cd Qwipo_Assignment
+
+2. Backend Setup
 
 cd server
 
 npm install
 
-Configure Environment Variables
+Create a .env file inside server/ with:
 
-Create a .env file inside server/:
+Copy code
 
 PORT=5000
+
 DB_PATH=./database.db
 
-Run Migrations & Start Server
+Run migrations & start the server:
 
-npm run migrate   # creates tables if not present
+npm run migrate       # creates tables if not present
 
 npm start
 
-3️⃣ Frontend Setup
+3. Frontend Setup
 
 cd ../client
 
@@ -65,38 +79,42 @@ npm install
 
 npm start
 
-🗄️ Database Design
+Database Design
 
 customers table
 
-| Column        | Type    | Constraints      | Description             |
-| ------------- | ------- | ---------------- | ----------------------- |
-| id            | INTEGER | PK AUTOINCREMENT | Unique identifier       |
-| first\_name   | TEXT    | NOT NULL         | Customer’s first name   |
-| last\_name    | TEXT    | NOT NULL         | Customer’s last name    |
-| phone\_number | TEXT    | NOT NULL UNIQUE  | Customer’s phone number |
+Column	Type	Constraints	Description
+
+id	INTEGER	PK AUTOINCREMENT	Unique identifier
+
+first_name	TEXT	NOT NULL	Customer’s first name
+
+last_name	TEXT	NOT NULL	Customer’s last name
+
+phone_number	TEXT	NOT NULL, UNIQUE	Customer’s phone number
 
 addresses table
 
-| Column           | Type    | Constraints        | Description            |
-| ---------------- | ------- | ------------------ | ---------------------- |
-| id               | INTEGER | PK AUTOINCREMENT   | Unique identifier      |
-| customer\_id     | INTEGER | FK → customers(id) | Linked customer        |
-| address\_details | TEXT    | NOT NULL           | Street, building, etc. |
-| city             | TEXT    | NOT NULL           | City name              |
-| state            | TEXT    | NOT NULL           | State name             |
-| pin\_code        | TEXT    | NOT NULL           | Postal / ZIP code      |
- 
+Column	Type	Constraints	Description
 
-🔗 API Endpoints
+id	INTEGER	PK AUTOINCREMENT	Unique identifier
 
-All APIs are prefixed with /api.
+customer_id	INTEGER	FK → customers(id)	Linked customer
 
+address_details	TEXT	NOT NULL	Street, building, etc.
+
+city	TEXT	NOT NULL	City name
+
+state	TEXT	NOT NULL	State name
+
+pin_code	TEXT	NOT NULL	Postal / ZIP code
+
+API Endpoints (prefix /api)
 Customer Routes
 
 POST /api/customers → Create customer
 
-GET /api/customers → Get all customers (supports search, sort, pagination)
+GET /api/customers → Get all customers (with support for search, sorting, pagination)
 
 GET /api/customers/:id → Get customer by ID
 
@@ -106,103 +124,30 @@ DELETE /api/customers/:id → Delete customer
 
 Address Routes
 
-POST /api/customers/:id/addresses → Add new address for customer
+POST /api/customers/:id/addresses → Add a new address for a customer
 
-GET /api/customers/:id/addresses → Get all addresses of a customer
+GET /api/customers/:id/addresses → List all addresses of a customer
 
 PUT /api/addresses/:addressId → Update an address
 
 DELETE /api/addresses/:addressId → Delete an address
 
-🖥️ Frontend Features
+Frontend Features
+Customer Management: Create, read, update, and delete customer records with validation on both client and server side
 
-Customer Management
+Address Management: Add, edit, and delete multiple addresses for each customer
 
-Create, read, update, and delete customer records
+Search & Filtering: Filter customers by city, state, or pin code
 
-Validation on both client & server
+Pagination & Sorting: Navigate through customer list pages and sort results
 
-Address Management
+Navigation: Smooth routing with React Router
 
-Manage multiple addresses per customer
+Responsive Design: Works well on different devices, with media queries
 
-Add, edit, and delete addresses
+UX Enhancements: Mark customers with “Only One Address”, reset filters/search, and provide confirmation messages
 
-Search & Filtering
+Error Handling: Includes error handling and logging mechanisms
 
-Filter customers by city, state, or pin code
+Test Cases: Scenarios provided for correctness
 
-Pagination & Sorting
-
-Navigate through customer list pages
-
-Sort results for efficient retrieval
-
-Navigation
-
-Smooth page routing with React Router
-
-📱 Mobile CRUD Assignment Coverage
-
-Create, update, delete, and read customers
-
-Manage multiple addresses per customer
-
-Search & filter by city/state/pin
-
-Mark customers with “Only One Address”
-
-Reset filters & search
-
-Proper validation and confirmation messages
-
-🌐 Web CRUD Assignment Coverage
-
-Full customer dashboard with CRUD operations
-
-Organized sections for profile, addresses, and related data
-
-Infinite scroll / pagination with sorting
-
-Responsive design with media queries
-
-Error handling and logging system
-
-Test case scenarios for correctness
-
-📜 Scripts
-
-Backend
-
-npm run migrate   # Runs migrations and creates tables
-
-npm start         # Starts Express server
-
-Frontend
-
-npm start         # Starts React dev server
-
-🖼️ Demo Screenshots
-
-👉 Replace these with your actual screenshots after running the app:
-
-Customer List Page
-
-
-Customer Detail Page
-
-
-Customer Form (Add/Edit)
-
-
-🎥 Demo Recording
-
-A demo video (via Loom/OBS) will showcase:
-
-Customer & Address CRUD
-
-Validation
-
-Search & Filters
-
-Pagination & Navigation
